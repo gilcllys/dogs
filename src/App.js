@@ -1,8 +1,12 @@
-import React from 'react';
+import React from "react"
+import "./App.css"
+import Api from "./api/Api.js"
 
 function App() {
   return (
-    <div>App react</div>
+    <div>
+    <Api />
+    </div>
   );
 }
 
