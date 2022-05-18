@@ -30,7 +30,6 @@ export function Userstorage({children}) {
         const json = await response.json()
         setData(json)
         setLogin(true)
-        console.log(json)
     }
 
     async function userLogin(username, password){
@@ -39,7 +38,6 @@ export function Userstorage({children}) {
             setLoading(true)
             const {url, option} = TOKEN_POST({username,password})
             const tokenRes =  await fetch(url, option)
-            console.log(tokenRes)
             if(!tokenRes.ok) throw new Error(`Error: ${tokenRes.statusText}`)
             const {token} = await tokenRes.json()
             window.localStorage.setItem('token', token)
@@ -71,6 +69,8 @@ export function Userstorage({children}) {
                     setLoading(false)
                 }
                 
+            }else{
+                setLoading(false)
             }
         }
         autoLogin()
