@@ -1,50 +1,52 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import useForm from '../../Hooks/useForm'
-import Button from '../Form/Button'
-import Input from '../Form/Input'
+import React from "react";
+import { Link } from "react-router-dom";
+import useForm from "../../Hooks/useForm";
+import { UserContext } from "../../UserContext";
+import Button from "../Form/Button";
+import Input from "../Form/Input";
+import Error from "../Helper/Error";
+import styles from './LoginForm.module.css'
+import stylesBtn from '../Form/Button.module.css'
 
 function LoginForm() {
-    const username = useForm()
-    const password = useForm()
-   
-    function handleSubmit(event){
-        event.preventDefault()
-        if (username.validate() && password.validate()){
-            fetch('https://dogsapi.origamid.dev/json/jwt-auth/v1/token',{
-            method:'POST',
-            headers:{
-              'Content-Type': 'aplication/json'  
-            },
-            body: JSON.stringify(),
-        })
-        .then(response => {
-            console.log(response)
-            return response.json()
-        })
-        .then(json => {
-            console.log(json)
-        })
-        .catch(erro => {
-            console.log(erro)
-        })
+    const username = useForm();
+    const password = useForm();
 
-        }     
+    const { userLogin, error, loading } = React.useContext(UserContext);
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        if (username.validate() && password.validate()) {
+            userLogin(username.value, password.value);
+        }
     }
 
     return (
-        <div>
-        <h1>Login</h1>
-        <form action=""  onSubmit={handleSubmit}>
-            <Input label='Usuário' type='text' name='name' {...username}/>
-            <Input label='Senha' type='password' name='password' {...password}/>
-            <Button>
-                Entrar
-            </Button>
-        </form>
-        <Link to="/login/criar">Cadastro</Link>
-        </div>
+        <section  className="animeLeft">
+            <h1 className="title">Login</h1>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <Input label="Usuário" type="text" name="name" {...username} />
+                <Input
+                    label="Senha"
+                    type="password"
+                    name="password"
+                    {...password}
+                />
+                {loading ? (
+                <Button disabled>Carregando ...</Button>
+                ) : (
+                    <Button>Entrar</Button>
+                )}  
+                    <Error erro={error}/>
+            </form>
+            <Link className={styles.perdeu} to='/Login/perdeu'>Perdeu a senha ?</Link>
+            <div>
+                    <h2 className={styles.subtitle}>Cadastre-se</h2>
+                    <p>Ainda não possui conta? Cadastre-se no site</p>
+                    <Link className={stylesBtn.button} to="/login/criar">Cadastro</Link>
+            </div>
+        </section>
     );
 }
 
-export default LoginForm
+export default LoginForm;
