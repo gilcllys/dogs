@@ -18,11 +18,11 @@ function UserHeaderNav() {
     },[pathname])
     return (
         <>
-        <button
+        {mobile && (<button
             aria-label='Menu'
             className={`${styles.mobileButton} ${mobileMenu && styles.mobileButtonActive}`}
             onClick={()=> setMobileMenu(!mobileMenu)}>
-            </button>
+        </button>)}
         <nav className={`${mobile ? styles.navMobile : styles.nav} 
         ${mobileMenu && styles.navMobileAcvtive}`}>
             <NavLink to='/conta' end className={({isActive}) => isActive ? styles.active : undefined}>
