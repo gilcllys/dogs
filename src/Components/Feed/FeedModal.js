@@ -6,19 +6,26 @@ import Error from '../Helper/Error'
 import Loading from '../Helper/Loading'
 import PhotoContent from '../Photo/PhotoContent'
 
-function FeedModal({photo}) {
+function FeedModal({photo, setModalPhoto}) {
   const {data, error, loadinng, request} = useFetch()
 
   React.useEffect(()=>{
     const {url, option} = PHOTO_GET(photo.id)
     request(url,option)
   },[photo, request])
+
+  function handleOutSideClick(event){
+    if(event.target === event.currentTarget){
+      setModalPhoto(null)
+    }
+  }
+
+
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal} onClick={handleOutSideClick}>
       {error && <Error error={error}/>}
       {loadinng && <Loading />}
-      {data && <PhotoContent data={data} />}
-      
+      {data && <PhotoContent data={data} />}  
     </div>
   )
 }
