@@ -21,7 +21,6 @@ const LoginForm = () => {
       userLogin(username.value, password.value);
     }
   }
-
   return (
     <section className="animeLeft">
       <h1 className="title">Login</h1>
