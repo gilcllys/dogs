@@ -1,11 +1,13 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
-import { UserContext } from '../../UserContext'
+import React from 'react';
+import { UserContext } from '../../UserContext';
+import { Route, Navigate } from 'react-router-dom';
 
-function ProtectedRoute({children}) {
-    const{ login } = React.useContext(UserContext)
+const ProtectedRoute = ({children}) => {
+  const { login } = React.useContext(UserContext);
 
-    return login ? children : <Navigate to='/Login'/>
-}
+  if (login === true) return children;
+  else if (login === false) return <Navigate to="/login" />;
+  else return null;
+};
 
-export default ProtectedRoute
+export default ProtectedRoute;

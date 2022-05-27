@@ -7,13 +7,13 @@ import ProtectedRoute from "./Components/Helper/ProtectedRoute";
 import Home from "./Components/Home";
 import Login from "./Components/Login/Login";
 import User from "./Components/User/User";
-import { Userstorage } from "./UserContext";
+import { UserStorage } from './UserContext';
 
 function App() {
   
   return (
       <BrowserRouter>
-        <Userstorage>
+        <UserStorage>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -21,7 +21,7 @@ function App() {
             <Route path="conta/*" element={<ProtectedRoute> <User /> </ProtectedRoute>}/>    
           </Routes>
           <Footer />
-        </Userstorage>
+        </UserStorage>
       </BrowserRouter>
   );
 }

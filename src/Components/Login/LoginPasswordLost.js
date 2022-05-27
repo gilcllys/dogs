@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-function LoginPasswordLost() {
-  return (
-    <div>LoginPasswordLost</div>
-  )
-}
+const LoginPasswordLost = () => {
+  return <div></div>;
+};
 
-export default LoginPasswordLost
+export default LoginPasswordLost;
