@@ -11,7 +11,7 @@ const LoginPasswordReset = () => {
     const [login, setLogin] = React.useState("");
     const [key, setKey] = React.useState("");
     const password = useForm();
-    const { error, loading, request } = useFetch();
+    const { loading, request } = useFetch();
 
     React.useEffect(() => {
         const params = new URLSearchParams(window.location.search);
