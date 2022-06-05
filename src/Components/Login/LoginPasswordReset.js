@@ -22,20 +22,19 @@ const LoginPasswordReset = () => {
     }, []);
 
     async function handleSubmit(event) {
-      
-      event.preventDefault()
-      const { url, options } = PASSWORD_RESET({
-          login,
-          key,
-          password: password.value,
-      });
-      const {response} = await request(url, options);
-      if(response.ok) Navigate('/login')
+        event.preventDefault();
+        const { url, options } = PASSWORD_RESET({
+            login,
+            key,
+            password: password.value,
+        });
+        const { response } = await request(url, options);
+        if (response.ok) Navigate("/login");
     }
 
     return (
-        <div>
-            <Head title='Resete a sua senha' />
+        <section className="animeLeft">
+            <Head title="Resete a sua senha" />
             <h1 className="title"> Resete a Senha</h1>
             <form onSubmit={handleSubmit}>
                 <Input label="Nova senha" type="password" name="password" />
@@ -45,7 +44,7 @@ const LoginPasswordReset = () => {
                     <Button>Resetar</Button>
                 )}
             </form>
-        </div>
+        </section>
     );
 };
 
